@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('web_settings', function (Blueprint $table) {
             $table->id();
             $table->string('app_name')->default('Wishlist Book App');
+            $table->string('app_description')->default('A simple wishlist book application.');
+            $table->string('app_logo')->nullable();
             $table->string('total_visitors')->default(0);
             $table->timestamps();
         });
