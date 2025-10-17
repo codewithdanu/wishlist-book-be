@@ -65,4 +65,13 @@ class BookController extends Controller
 
         return response()->json(['book' => $book]);
     }
+
+    public function totalReviews()
+    {
+        $totalReviews = Book::withCount('ratings')->get()->sum('ratings_count');
+
+        return response()->json([
+            'total_reviews' => $totalReviews
+        ]);
+    }
 }
