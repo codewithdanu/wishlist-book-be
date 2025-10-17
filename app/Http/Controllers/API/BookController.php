@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index(Request $request)
     {
-        $books = Book::with(['author', 'genres', 'ratings.user'])->query();
+        $books = Book::with(['author', 'genres', 'ratings.user']);
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -34,9 +34,9 @@ class BookController extends Controller
             });
         }
 
-        if($request->has('page')) {
-            $page = $request->input('page');
-            $books->paginate($page);
+        if($request->has('perPage')) {
+            $perPage = $request->input('perPage');
+            $books->paginate($perPage);
         } else {
             $books = $books->get();
         }

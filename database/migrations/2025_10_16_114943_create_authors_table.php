@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('profile_photo');
+            $table->boolean('is_popular')->default(false);
             $table->timestamps();
         });
     }
