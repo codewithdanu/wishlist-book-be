@@ -21,7 +21,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             if(Auth::user()->role !== 'visitor') {
                 Auth::logout();
-                return response()->json(['message' => 'Only visitor can logged in'], 403);
+                return response()->json(['message' => 'Invalid login credentials'], 401);
             }
             $user = User::find(Auth::id());
             $token = $user->createToken('auth_token')->plainTextToken;
