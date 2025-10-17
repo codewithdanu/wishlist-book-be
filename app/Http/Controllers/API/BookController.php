@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index(Request $request)
     {
-        $books = Book::with(['author', 'genres', 'ratings.user']);
+        $books = Book::with(['author', 'genres', 'ratings.user'])->withAvg('ratings', 'rating');
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -57,7 +57,7 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = Book::with(['author', 'genres', 'ratings.user'])->find($id);
+        $book = Book::with(['author', 'genres', 'ratings.user'])->withAvg('ratings', 'rating')->find($id);
 
         if (!$book) {
             return response()->json(['message' => 'Book not found'], 404);
