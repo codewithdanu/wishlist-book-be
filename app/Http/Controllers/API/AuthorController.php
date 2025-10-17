@@ -11,7 +11,7 @@ class AuthorController extends Controller
     public function index()
     {
         return response()->json([
-            'authors' => Author::latest()->orderBy('is_popular')->paginate(6)
+            'authors' => Author::with('books')->latest()->orderBy('is_popular')->paginate(6)
         ]);
     }
 }
