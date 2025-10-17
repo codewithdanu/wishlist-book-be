@@ -23,15 +23,15 @@ class BookController extends Controller
         if($request->has('genres')) {
             $genres = $request->input('genres');
             $books->whereHas('genres', function ($query) use ($genres) {
-                $query->whereIn('name', (array) $genres);
+                $query->whereIn('genres.id', (array) $genres);
             });
         }
 
-        if($request->has('languages')) {
-            $languages = $request->input('languages');
+        if ($request->has('languages')) {
+            $languages = (array) $request->input('languages');
             $books->where(function ($query) use ($languages) {
-                foreach ((array) $languages as $language) {
-                    $query->orWhere('languages', 'like', "%{$language}%");
+                foreach ($languages as $lang) {
+                    $query->orWhereJsonContains('languages', $lang);
                 }
             });
         }
@@ -41,6 +41,24 @@ class BookController extends Controller
             $books->whereHas('author', function ($query) use ($author) {
                 $query->where('name', 'like', "%{$author}%");
             });
+        }
+
+        if ($request->has('sort')) {
+            $sort = $request->input('sort');
+            switch ($sort) {
+                case 'latest':
+                    $books->latest();
+                    break;
+                case 'oldest':
+                    $books->oldest();
+                    break;
+                case 'popular':
+                    $books->withCount('ratings')->orderBy('ratings_count', 'desc');
+                    break;
+                case 'rated':
+                    $books->orderBy('ratings_avg_rating', 'desc');
+                    break;
+            }
         }
 
         if($request->has('perPage')) {
