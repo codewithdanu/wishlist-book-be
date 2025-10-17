@@ -14,4 +14,17 @@ class AuthorController extends Controller
             'authors' => Author::with('books')->latest()->orderByDesc('is_popular')->paginate(6)
         ]);
     }
+
+    public function show($authorId)
+    {
+        $author = Author::with('books.genres')->find($authorId);
+
+        if (!$author) {
+            return response()->json(['message' => 'Author not found'], 404);
+        }
+
+        return response()->json([
+            'author' => $author
+        ]);
+    }
 }

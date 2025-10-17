@@ -10,6 +10,7 @@ Route::get('total-reviews', [App\Http\Controllers\API\BookController::class, 'to
 Route::get('books/{slug}', [App\Http\Controllers\API\BookController::class, 'show']);
 Route::get('genres', [App\Http\Controllers\API\GenreController::class, 'index']);
 Route::get('authors', [App\Http\Controllers\API\AuthorController::class, 'index']);
+Route::get('authors/{authorId}', [App\Http\Controllers\API\AuthorController::class, 'show']);
 
 Route::post('auth/login', [AuthController::class, 'login']);
 Route::post('auth/create-account', [AuthController::class, 'createAccount']);
