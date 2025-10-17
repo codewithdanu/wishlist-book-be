@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CounterVisitorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('wishlist-books', [App\Http\Controllers\API\WishlistBookController::class, 'store']);
     Route::delete('wishlist-books/{bookId}', [App\Http\Controllers\API\WishlistBookController::class, 'destroy']);
 });
+
+Route::post('/visitors/count', [CounterVisitorController::class, 'count']);
+Route::get('/visitors/total', [CounterVisitorController::class, 'total']);
