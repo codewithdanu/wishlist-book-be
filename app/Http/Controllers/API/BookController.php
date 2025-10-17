@@ -27,6 +27,15 @@ class BookController extends Controller
             });
         }
 
+        if($request->has('languages')) {
+            $languages = $request->input('languages');
+            $books->where(function ($query) use ($languages) {
+                foreach ((array) $languages as $language) {
+                    $query->orWhere('languages', 'like', "%{$language}%");
+                }
+            });
+        }
+
         if($request->has('author')) {
             $author = $request->input('author');
             $books->whereHas('author', function ($query) use ($author) {
