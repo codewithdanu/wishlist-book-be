@@ -92,4 +92,20 @@ class BookController extends Controller
             'total_reviews' => $totalReviews
         ]);
     }
+
+    public function recommended()
+    {
+        $recommendedBooks = Book::with(['author', 'genres', 'ratings.user'])
+            ->withAvg('ratings', 'rating')
+            ->whereHas('ratings', function ($query) {
+                $query->where('rating', '>=', 4);
+            })
+            ->orderByDesc('ratings_avg_rating')
+            ->take(6)
+            ->get();
+
+        return response()->json([
+            'recommended_books' => $recommendedBooks
+        ]);
+    }
 }
