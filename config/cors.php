@@ -22,7 +22,7 @@ return [
     'allowed_origins' => [
         'http://localhost:3000',
         'http://127.0.0.1:3000',
-        'https://deepskyblue-lobster-291494.hostingersite.com'
+        'https://wishlist-book-fe.vercel.app/'
     ],
 
     'allowed_origins_patterns' => [],
