@@ -73,9 +73,9 @@ class BookController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $book = Book::with(['author', 'genres', 'ratings.user'])->withAvg('ratings', 'rating')->find($id);
+        $book = Book::with(['author', 'genres', 'ratings.user'])->withAvg('ratings', 'rating')->where('slug', $slug)->first();
 
         if (!$book) {
             return response()->json(['message' => 'Book not found'], 404);

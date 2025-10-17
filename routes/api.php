@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('books', [App\Http\Controllers\API\BookController::class, 'index']);
 Route::get('total-reviews', [App\Http\Controllers\API\BookController::class, 'totalReviews']);
-Route::get('books/{id}', [App\Http\Controllers\API\BookController::class, 'show']);
+Route::get('books/{slug}', [App\Http\Controllers\API\BookController::class, 'show']);
 Route::get('genres', [App\Http\Controllers\API\GenreController::class, 'index']);
 Route::get('authors', [App\Http\Controllers\API\AuthorController::class, 'index']);
 
