@@ -10,7 +10,7 @@ class WishlistBookController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $wishlistBooks = $user->wishlistBooks()->with(['author', 'genres'])->get();
+        $wishlistBooks = $user->wishlistBooks()->with(['author', 'genres', 'ratings'])->withAvg('ratings', 'rating')->get();
 
         return response()->json(['wishlist_books' => $wishlistBooks]);
     }
