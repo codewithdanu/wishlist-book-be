@@ -36,7 +36,7 @@ class BookController extends Controller
 
         if($request->has('perPage')) {
             $perPage = $request->input('perPage');
-            $books->paginate($perPage);
+            $books = $books->paginate($perPage);
         } else {
             $books = $books->get();
         }
