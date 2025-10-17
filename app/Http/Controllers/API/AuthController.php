@@ -30,7 +30,7 @@ class AuthController extends Controller
                 'access_token' => $token,
                 'token_type' => 'Bearer',
                 'user' => $user
-            ]);
+            ])->cookie('token', $token, 60 * 24 * 7, '/', null, false, false);
         }
 
         return response()->json(['message' => 'Invalid login credentials'], 401);
