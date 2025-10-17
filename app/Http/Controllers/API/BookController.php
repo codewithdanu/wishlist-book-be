@@ -36,10 +36,10 @@ class BookController extends Controller
             });
         }
 
-        if($request->has('author')) {
-            $author = $request->input('author');
-            $books->whereHas('author', function ($query) use ($author) {
-                $query->where('name', 'like', "%{$author}%");
+        if($request->has('authors')) {
+            $authors = (array) $request->input('authors');
+            $books->whereHas('author', function ($query) use ($authors) {
+                $query->whereIn('name', $authors);
             });
         }
 
