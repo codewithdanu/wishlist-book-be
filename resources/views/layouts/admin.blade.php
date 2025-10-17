@@ -34,6 +34,8 @@
             color: white;
             margin-right: 4px;
         }
+
+        [x-cloak] { display: none !important; }
     </style>
 
 </head>

@@ -13,7 +13,7 @@
 
 <div x-data="{ open: false, deleteUrl: '' }">
     <!-- Modal Delete -->
-    <div x-show="open" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div x-show="open" x-cloak class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
         <div @click.away="open = false" class="bg-white p-6 rounded-lg shadow max-w-sm w-full">
             <h3 class="text-lg font-bold mb-3 text-[#1e293b]">Delete Confirmation</h3>
             <p class="text-gray-600 mb-5">Are you sure you want to delete this user?</p>
