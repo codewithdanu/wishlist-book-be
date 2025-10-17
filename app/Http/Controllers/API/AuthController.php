@@ -19,6 +19,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            if(Auth::user()->role !== 'visitor') {
+                Auth::logout();
+                return response()->json(['message' => 'Only visitor can logged in'], 403);
+            }
             $user = User::find(Auth::id());
             $token = $user->createToken('auth_token')->plainTextToken;
 
