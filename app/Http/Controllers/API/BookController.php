@@ -23,7 +23,7 @@ class BookController extends Controller
         if($request->has('genres')) {
             $genres = $request->input('genres');
             $books->whereHas('genres', function ($query) use ($genres) {
-                $query->whereIn('genres.id', (array) $genres);
+                $query->whereIn('genres.name', (array) $genres);
             });
         }
 
