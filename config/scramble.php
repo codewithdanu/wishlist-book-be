@@ -107,27 +107,5 @@ return [
         RestrictedDocsAccess::class,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | 🔐 Authentication Settings for Scramble UI
-    |--------------------------------------------------------------------------
-    |
-    | Ini akan menambahkan tombol "Authorize" dan input Bearer Token di UI
-    | sehingga kamu bisa melakukan request ke endpoint yang dilindungi auth.
-    |
-    */
-    'auth' => [
-        'enabled' => true,
-        'default' => 'sanctum',
-        'in_ui' => true,
-
-        'guards' => [
-            'sanctum' => [
-                'type' => 'http',
-                'scheme' => 'bearer',
-            ],
-        ],
-    ],
-
     'extensions' => [],
 ];
