@@ -40,7 +40,7 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['message' => 'Logged out'])->cookie('token', null, -1);
     }
 
     public function me(Request $request)
