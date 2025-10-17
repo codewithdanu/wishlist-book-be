@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_ratings', function (Blueprint $table) {
+        Schema::create('user_wishlists', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignIdFor(Book::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('rating');
-            $table->string('review');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('book_ratings');
+        Schema::dropIfExists('user_wishlists');
     }
 };

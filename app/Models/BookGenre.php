@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BookRating extends Model
+class BookGenre extends Model
 {
     protected $guarded = ['id'];
 
@@ -13,8 +13,8 @@ class BookRating extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function user()
+    public function genre()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Genre::class);
     }
 }

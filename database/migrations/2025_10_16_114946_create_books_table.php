@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Author::class)->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('slug');
             $table->string('image');
@@ -22,8 +23,6 @@ return new class extends Migration
             $table->longText('synopsis');
             $table->date('published_at');
             $table->json('languages');
-            $table->json('genres');
-            $table->json('authors');
             $table->timestamps();
         });
     }

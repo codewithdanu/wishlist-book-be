@@ -32,7 +32,8 @@ class BookRatingSeeder extends Seeder
 
         foreach ($books as $book) {
             BookRating::create([
-                'user_id' => 1,
+                'user_id' => 2,
+                'book_id' => $book->id,
                 'rating' => rand(3, 5),
                 'review' => $faker->randomElement($reviewTexts),
             ]);
